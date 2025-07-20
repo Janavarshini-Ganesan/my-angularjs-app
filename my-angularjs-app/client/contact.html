@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Register With Us</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="app.js"></script>
+
+    <style>
+        /* General container for the form */
+        div {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 20px;
+        }
+
+        /* Form input styles */
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #34495e;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #1abc9c;
+            outline: none;
+        }
+
+        /* Error message styles */
+        span {
+            font-size: 12px;
+            color: red;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .error-message {
+            font-size: 14px;
+            color: red;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Button styles */
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1abc9c;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #16a085;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            div {
+                padding: 15px;
+            }
+
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body ng-app="my-angularjs-app">
+  <div class="container mt-5">
+    <div class="card shadow p-4">
+      <h1 class="text-center mb-4">Register With Us</h1>
+      <form name="contactForm" ng-submit="submitForm()" novalidate>
+        <div class="mb-3">
+          <label for="tuitionName" class="form-label">Tuition Name:</label>
+          <input type="text" id="tuitionName" ng-model="tuitionName" class="form-control" required>
+          <span class="text-danger" ng-show="contactForm.tuitionName.$touched && contactForm.tuitionName.$invalid">This field is required.</span>
+        </div>
+        <div class="mb-3">
+          <label for="tutorName" class="form-label">Tutor Name:</label>
+          <input type="text" id="tutorName" ng-model="tutorName" class="form-control" required>
+          <span class="text-danger" ng-show="contactForm.tutorName.$touched && contactForm.tutorName.$invalid">This field is required.</span>
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number:</label>
+          <input type="tel" id="phoneNumber" ng-model="phoneNumber" class="form-control" required pattern="^[0-9]{10}$">
+          <span class="text-danger" ng-show="contactForm.phoneNumber.$touched && contactForm.phoneNumber.$invalid">Invalid phone number.</span>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input type="password" id="password" ng-model="password" class="form-control" required minlength="6">
+          <span class="text-danger" ng-show="contactForm.password.$touched && contactForm.password.$invalid">Minimum 6 characters required.</span>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password:</label>
+          <input type="password" id="confirmPassword" ng-model="confirmPassword" class="form-control" required minlength="6" ng-model-options="{ updateOn: 'blur' }">
+          <span class="text-danger" ng-show="contactForm.confirmPassword.$touched && (confirmPassword !== password)">Passwords do not match.</span>
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address:</label>
+          <input type="text" id="address" ng-model="address" class="form-control" required>
+          <span class="text-danger" ng-show="contactForm.address.$touched && contactForm.address.$invalid">This field is required.</span>
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">City:</label>
+          <input type="text" id="city" ng-model="city" class="form-control" required>
+          <span class="text-danger" ng-show="contactForm.city.$touched && contactForm.city.$invalid">This field is required.</span>
+        </div>
+        <div class="mb-3">
+          <label for="state" class="form-label">State:</label>
+          <input type="text" id="state" ng-model="state" class="form-control" required>
+          <span class="text-danger" ng-show="contactForm.state.$touched && contactForm.state.$invalid">This field is required.</span>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" ng-disabled="contactForm.$invalid">Submit</button>
+      </form>
+      <p class="text-danger text-center mt-3" ng-if="errorMessage">{{ errorMessage }}</p>
+    </div>
+  </div>
+</body>
+
+</html>

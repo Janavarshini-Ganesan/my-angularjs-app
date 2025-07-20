@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Tuition Table</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="table-container">
+        <h2>List of Added Tuitions</h2>
+        <table border="1" class="tuition-table">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Fees</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tuition in storedTuitions">
+                    <td>{{tuition.class}}</td>
+                    <td>{{tuition.subject}}</td>
+                    <td>{{tuition.fees}}</td>
+                    <td>
+                        <button ng-click="editTuition(tuition)">Edit</button>
+                        <button ng-click="deleteTuition(tuition._id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button ng-click="goToMyTuition()">Back to My Tuition</button>
+    </div>
+</body>
+</html>
+
+
+$scope.fetchTuitions = function() {
+    $http.get('/api/userTuitions', { params: { tuitionName: $scope.loggedInTuitionName } })
+        .then(function(response) {
+            console.log('Fetched tuitions:', response.data); // Log the response to check the structure
+            $scope.userTuitions = []; // Initialize the userTuitions array
+
+            // Loop through each entry and populate userTuitions array
+            response.data.forEach(entry => {
+                if (entry.tuitions && entry.tuitions.length > 0) {
+                    entry.tuitions.forEach(tuition => {
+                        $scope.userTuitions.push({
+                            class: tuition.class,
+                            subject: tuition.subject,
+                            fees: tuition.fees,
+                            _id: tuition._id // Track the ID
+                        });
+                    });
+                }
+            });
+        })
+        .catch(function(error) {
+            console.error('Error fetching tuitions:', error);
+        });
+};
+
+$scope.logout = function() {
+    // Logic for logging out (e.g., clearing session)
+    $location.path('/about'); // Redirect to about.html
+};

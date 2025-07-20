@@ -1,0 +1,112 @@
+<div> 
+  <h1>Login Form</h1>
+  <form ng-submit="login()" class="login-form">
+    <div class="form-group">
+      <label for="tuitionName">Tuition Name:</label>
+      <input type="text" id="tuitionName" ng-model="tuitionName" placeholder="Enter Tuition Name" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" ng-model="password" placeholder="Enter Password" required>
+    </div>
+    <button type="submit" class="submit-btn">Login</button>
+    <p class="error-message" ng-if="errorMessage">{{ errorMessage }}</p>
+  </form>
+</div>
+
+<style>
+  /* General reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Centering the form container */
+  div {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto; /* ✅ Center horizontally */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #f7f9fc;
+  }
+
+  /* Form Title */
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  /* Form Group */
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    color: #34495e;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  /* Input Fields */
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #1abc9c; /* Highlight on focus */
+  }
+
+  /* Submit Button - updated to dark blue */
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #2c3e50; /* ✅ Dark blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .submit-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+
+  /* Error Message */
+  .error-message {
+    color: #e74c3c; /* Red for error */
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    div {
+      padding: 15px;
+      margin: 30px auto;
+    }
+
+    input[type="text"], input[type="password"] {
+      padding: 10px;
+    }
+
+    .submit-btn {
+      padding: 10px;
+    }
+  }
+</style>
