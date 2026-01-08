@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client')));
 
 // MongoDB connection URI
-const uri = "mongodb+srv://janavarshini21:987654321@cluster0.wvvyjcu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://janavarshini21:Varshini@cluster0.wvvyjcu.mongodb.net/?appName=Cluster0";
 
 // Function to validate ObjectId format
 function isValidObjectId(id) {
